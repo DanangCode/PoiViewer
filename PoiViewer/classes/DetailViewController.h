@@ -10,4 +10,7 @@
 
 @interface DetailViewController : UIViewController
 
+- (id)init:(NSDictionary *) aPoi;
+@property(nonatomic, retain) NSDictionary *poi;
+
 @end

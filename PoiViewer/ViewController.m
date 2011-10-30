@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PoiParser.h"
+#import "DetailViewController.h"
 
 @implementation ViewController
 
@@ -51,15 +52,12 @@
 } 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    //        DetailViewController *dvController = [[DetailViewController alloc] init];
-    //        dvController.title = title;
-    //        dvController.docName = content;
-    //        
-    //        [self.navigationController pushViewController:dvController animated:YES];
-    //        [dvController release];
-    //        dvController = nil;
+    NSDictionary *aPoi = [[[parser sections] valueForKey:
+                       [[[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
+
+    DetailViewController *dvController = [[DetailViewController alloc] init:aPoi];
+    [[self navigationController ] pushViewController:dvController animated:YES];
+    [dvController release];
 }
 
 

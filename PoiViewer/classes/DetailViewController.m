@@ -9,38 +9,19 @@
 #import "DetailViewController.h"
 
 @implementation DetailViewController
+@synthesize poi;
 
-- (id)init{
+- (id)init:(NSDictionary *) aPoi{
     self = [super init];
     if (self) {
-        // Custom initialization
+        [self setPoi:aPoi];
     }
     return self;
 }
 
-
-
-#pragma mark - View lifecycle
-
-
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
+- (void)loadView {
+    [self setTitle:[poi objectForKey:@"name"]];
 }
 
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end
