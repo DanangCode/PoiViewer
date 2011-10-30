@@ -30,6 +30,8 @@
     ViewController *viewController = [[[ViewController alloc] init] autorelease];
     
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+  //  [[navController navigationBar] setTranslucent:YES];
+    //[[navController navigationBar] setBarStyle:UIBarStyleBlack];
     [[self window] setRootViewController:navController];
     [self.window makeKeyAndVisible];
     return YES;

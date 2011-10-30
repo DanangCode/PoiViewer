@@ -14,5 +14,6 @@
 }
 
 @property(nonatomic, retain) PoiParser *parser;
+@property(nonatomic, retain) UITableView *tableView;
 
 @end

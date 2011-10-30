@@ -62,10 +62,11 @@
     
     // Loop again and sort the pois into their respective keys
     for (NSDictionary *poiNode in [self pois]) {
+        
         // we want the content of the node not the node itself
-        NSDictionary *poi = [poiNode objectForKey:@"poi"];
-        [[self.sections objectForKey:[[poi objectForKey:@"name"] substringToIndex:1]] addObject:poi];
-    }    
+        NSDictionary *aPoi = [poiNode objectForKey:@"poi"];
+        [[[self sections] objectForKey:[[aPoi objectForKey:@"name"] substringToIndex:1]] addObject:aPoi];
+    } 
     
   }
 

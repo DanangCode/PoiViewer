@@ -12,40 +12,48 @@
 @implementation ViewController
 
 
-@synthesize parser;
+@synthesize parser, tableView=_tableView;;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {   
-    return [[parser pois] count];  
-} 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+    return [[[parser sections] allKeys] count];
+}
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//    return[
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString
-//                                                                             *)title atIndex:(NSInteger)index {
-//    return ;
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{    
+    return [[[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return [[[parser sections] valueForKey:[[[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section]] count];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  
     
     static NSString *CellIdentifier = @"Cell";  
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];  
     if (cell == nil) {  
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];  
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];  
     }  
     
-    // Configure the cell...  
-    NSDictionary *aPoi = [[[parser pois] objectAtIndex:[indexPath row]] objectForKey:@"poi"];  
-    cell.textLabel.text = [aPoi objectForKey:@"name"];  
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSDictionary *aPoi = [[[parser sections] valueForKey:
+                           [[[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
+    
+    [[cell textLabel] setText:[aPoi objectForKey:@"name"]];  
+    [[cell detailTextLabel ] setText:[aPoi objectForKey:@"type"]];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;  
 } 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    //        DetailViewController *dvController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:[NSBundle mainBundle]];
+    //        DetailViewController *dvController = [[DetailViewController alloc] init];
     //        dvController.title = title;
     //        dvController.docName = content;
     //        
@@ -59,27 +67,22 @@
 
 - (void)loadView
 {
+    [self setTitle:@"Poi Viewer"];
     [self setParser:[[PoiParser alloc] init]];
-
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(100, 100, 200, 200) style:UITableViewStylePlain];
-    
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView reloadData];
-    self.view = tableView;
-    
-    //[self.view addSubview: tableView];
-    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,460) style:UITableViewStylePlain];
+    [tableView setDelegate:self];
+    [tableView setDataSource:self];
+    [self setView:tableView];
+    [self setTableView:tableView];
     [tableView release];
+    
 }
 
 
-
-
-
 - (void)dealloc {
+    [_tableView setDelegate:nil];
+    [_tableView setDataSource:nil];
+    [_tableView release];
     [parser release];
     [super dealloc];
 }

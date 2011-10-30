@@ -33,6 +33,7 @@
 		585573D5145C6BD9001C1F6C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 585573C9145C6BD9001C1F6C /* SBJsonWriter.m */; };
 		585573D7145C6F8A001C1F6C /* pois.json in Resources */ = {isa = PBXBuildFile; fileRef = 585573D6145C6F89001C1F6C /* pois.json */; };
 		585573DA145C9159001C1F6C /* PoiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 585573D9145C9159001C1F6C /* PoiParser.m */; };
+		58557423145E0212001C1F6C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58557422145E0211001C1F6C /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		585573D6145C6F89001C1F6C /* pois.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pois.json; sourceTree = "<group>"; };
 		585573D8145C9159001C1F6C /* PoiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoiParser.h; path = classes/PoiParser.h; sourceTree = "<group>"; };
 		585573D9145C9159001C1F6C /* PoiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoiParser.m; path = classes/PoiParser.m; sourceTree = "<group>"; };
+		58557421145E0211001C1F6C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = classes/DetailViewController.h; sourceTree = "<group>"; };
+		58557422145E0211001C1F6C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = classes/DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +124,8 @@
 		5855736C145C6493001C1F6C = {
 			isa = PBXGroup;
 			children = (
-				58557381145C6493001C1F6C /* C */,
+				58557382145C6493001C1F6C /* Supporting Files */,
+				58557381145C6493001C1F6C /* Classes */,
 				5855739F145C6494001C1F6C /* PoiViewerTests */,
 				5855737A145C6493001C1F6C /* Frameworks */,
 				58557378145C6493001C1F6C /* Products */,
@@ -149,7 +153,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		58557381145C6493001C1F6C /* C */ = {
+		58557381145C6493001C1F6C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				5855738A145C6493001C1F6C /* AppDelegate.h */,
@@ -158,9 +162,10 @@
 				5855738E145C6493001C1F6C /* ViewController.m */,
 				585573D8145C9159001C1F6C /* PoiParser.h */,
 				585573D9145C9159001C1F6C /* PoiParser.m */,
-				58557382145C6493001C1F6C /* Supporting Files */,
+				58557421145E0211001C1F6C /* DetailViewController.h */,
+				58557422145E0211001C1F6C /* DetailViewController.m */,
 			);
-			name = C;
+			name = Classes;
 			path = PoiViewer;
 			sourceTree = "<group>";
 		};
@@ -174,6 +179,7 @@
 				58557389145C6493001C1F6C /* PoiViewer-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = PoiViewer;
 			sourceTree = "<group>";
 		};
 		5855739F145C6494001C1F6C /* PoiViewerTests */ = {
@@ -350,6 +356,7 @@
 				585573D4145C6BD9001C1F6C /* SBJsonUTF8Stream.m in Sources */,
 				585573D5145C6BD9001C1F6C /* SBJsonWriter.m in Sources */,
 				585573DA145C9159001C1F6C /* PoiParser.m in Sources */,
+				58557423145E0212001C1F6C /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +522,7 @@
 				585573AC145C6494001C1F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		585573AD145C6494001C1F6C /* Build configuration list for PBXNativeTarget "PoiViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +531,7 @@
 				585573AF145C6494001C1F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
