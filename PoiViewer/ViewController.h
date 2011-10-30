@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PoiParser;
 
-@interface ViewController : UIViewController
+@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource>{
+    PoiParser *parser;
+}
 
-@property(nonatomic, retain) NSArray *POIs;
+@property(nonatomic, retain) PoiParser *parser;
 
 @end

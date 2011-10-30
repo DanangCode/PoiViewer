@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PoiParser : NSObject
--(NSArray *)loadPOIs; 
+@interface PoiParser : NSObject{
+    NSArray *pois;
+    NSMutableDictionary *sections;
+}
 
+-(void)loadPOIs; 
+-(void)createSections;
+
+@property(nonatomic,retain) NSArray *pois;
+@property (nonatomic,retain) NSMutableDictionary *sections;
 
 @end

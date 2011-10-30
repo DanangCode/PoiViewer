@@ -13,12 +13,12 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+//@synthesize viewController = _viewController;
 
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
+   // [_viewController release];
     [super dealloc];
 }
 
@@ -27,8 +27,10 @@
     
     [self setWindow: [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
     // Override point for customization after application launch.
-    [self setViewController:[[[ViewController alloc] init] autorelease]];
-    [[self window] setRootViewController:[self viewController]];
+    ViewController *viewController = [[[ViewController alloc] init] autorelease];
+    
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+    [[self window] setRootViewController:navController];
     [self.window makeKeyAndVisible];
     return YES;
 }

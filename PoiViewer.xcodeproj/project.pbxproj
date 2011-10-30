@@ -121,7 +121,7 @@
 		5855736C145C6493001C1F6C = {
 			isa = PBXGroup;
 			children = (
-				58557381145C6493001C1F6C /* PoiViewer */,
+				58557381145C6493001C1F6C /* C */,
 				5855739F145C6494001C1F6C /* PoiViewerTests */,
 				5855737A145C6493001C1F6C /* Frameworks */,
 				58557378145C6493001C1F6C /* Products */,
@@ -149,7 +149,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		58557381145C6493001C1F6C /* PoiViewer */ = {
+		58557381145C6493001C1F6C /* C */ = {
 			isa = PBXGroup;
 			children = (
 				5855738A145C6493001C1F6C /* AppDelegate.h */,
@@ -160,6 +160,7 @@
 				585573D9145C9159001C1F6C /* PoiParser.m */,
 				58557382145C6493001C1F6C /* Supporting Files */,
 			);
+			name = C;
 			path = PoiViewer;
 			sourceTree = "<group>";
 		};
