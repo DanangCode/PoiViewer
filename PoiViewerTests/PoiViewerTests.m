@@ -40,14 +40,21 @@
     
 }
 
+-(void)testGetSectionTitle {
+
+    PoiParser *parser = [[PoiParser alloc] init];
+
+    STAssertEqualObjects([parser getSectionTitle:@"1"],@"O", @"1 must be translated to O");
+    STAssertEqualObjects([parser getSectionTitle:@"6"],@"S", @"6 must be translated to S");
+    [parser release];
+}
 -(void)testCreateSections {
     PoiParser *parser = [[PoiParser alloc] init];
 
     STAssertTrue(( [[parser sections] count] > 0), @"No Sections Returned");
-    STAssertTrue(( [[[parser sections] objectForKey:@"1"] count] > 0), @"section 1 not filled");
-    STAssertTrue(( [[[parser sections] objectForKey:@"1"] count] > 0), @"section 1 not filled");
-    
-
+    STAssertTrue(( [[[parser sections] objectForKey:@"A"] count] > 0), @"section A not filled");
+    STAssertTrue(( [[[parser sections] objectForKey:@"e"] count] == 0), @"lowercase sections not allowed");
+    STAssertTrue(( [[[parser sections] objectForKey:@"1"] count] == 0), @"numeric sections not allowed");
 }
 
 @end

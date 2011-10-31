@@ -10,6 +10,10 @@
 //JSON framework https://github.com/stig/json-framework.git
 #import "SBJson.h"
 
+@interface PoiParser () 
+    -(NSString *)getSectionTitle:(NSString *)name;
+    -(BOOL)isNumeric:(NSString *)s;
+@end
 
 @implementation PoiParser
 @synthesize pois, sections;
@@ -31,8 +35,9 @@
         NSLog(@"Failed to read pois. Error: %@", error);
         [error release];
     }
-    //parse the json objects into an array of poi dictionaries
+    //parse the json objects into an array of poi dictionaries using the SBJson library
     [self setPois:[jsonString JSONValue]] ;
+    [jsonString release];
     
 }
 
@@ -45,18 +50,17 @@
         
         // we want the content of the node not the node itself
         NSDictionary *poi = [poiNode objectForKey:@"poi"];
-        NSString *c = [[poi objectForKey:@"name"] substringToIndex:1];
+        NSString *title = [self getSectionTitle:[poi objectForKey:@"name"]];
         
         found = NO;
-        
         for (NSString *str in [[self sections] allKeys]) {
-            if ([str isEqualToString:c]) {
+            if ([str isEqualToString:title]) {
                 found = YES;
             }
         }
         
         if (!found) {
-            [[self sections] setValue:[[NSMutableArray alloc] init] forKey:c];
+            [[self sections] setValue:[[NSMutableArray alloc] init] forKey:title];
         }
     }
     
@@ -64,11 +68,55 @@
     for (NSDictionary *poiNode in [self pois]) {
         
         // we want the content of the node not the node itself
-        NSDictionary *aPoi = [poiNode objectForKey:@"poi"];
-        [[[self sections] objectForKey:[[aPoi objectForKey:@"name"] substringToIndex:1]] addObject:aPoi];
+        NSDictionary *poi = [poiNode objectForKey:@"poi"];
+        NSString *title = [self getSectionTitle:[poi objectForKey:@"name"]];
+        [[[self sections] objectForKey:title] addObject:poi];
     } 
-    
   }
+
+-(NSString *)getSectionTitle:(NSString *)name {
+    NSString *title = [[name substringToIndex:1] uppercaseString];
+    //if numeric return the first letter of the number
+    if ([self isNumeric:title]) {
+        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *myNumber = [f numberFromString:title];
+        [f release];
+        switch([myNumber intValue]) {
+            case 1:
+                return @"O";
+            case 2:
+                return @"T";
+            case 3:
+                return @"T";
+            case 4:
+                return @"F";
+            case 5:
+                return @"F";
+            case 6:
+                return @"S";
+            case 7:
+                return @"S";
+            case 8:
+                return @"E";
+            case 9:
+                return @"N";
+            default:
+                return @"Z";
+        }
+    } else {
+        return title;
+    }
+}
+
+-(BOOL)isNumeric:(NSString *)s
+{
+    NSScanner *sc = [NSScanner scannerWithString: s];
+    if ( [sc scanFloat:NULL] ) {
+        return [sc isAtEnd];
+    }
+    return NO;
+}
 
 
 - (void)dealloc {
