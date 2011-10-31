@@ -9,6 +9,7 @@
 #import "PoiViewController.h"
 #import "PoiParser.h"
 #import "DetailViewController.h"
+#import "Poi.h"
 
 
 /*PoiViewController is a UITableViewController. It's datasource is the POI data from the PoiParser.
@@ -70,11 +71,11 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];  
     }  
     
-    NSDictionary *aPoi = [[[parser sections] valueForKey:
+    Poi *aPoi = [[[parser sections] valueForKey:
                            [[[[parser sections] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:[indexPath section]]] objectAtIndex:[indexPath row]];
     
-    [[cell textLabel] setText:[aPoi objectForKey:@"name"]];  
-    [[cell detailTextLabel ] setText:[aPoi objectForKey:@"type"]];
+    [[cell textLabel] setText:[aPoi name]];  
+    [[cell detailTextLabel ] setText:[aPoi shopType]];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     return cell;  
 } 

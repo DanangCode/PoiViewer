@@ -8,6 +8,7 @@
 
 #import "PoiParser.h"
 #import "SBJson.h"
+#import "Poi.h"
 
 /*
  The POI parser loads POIs from the pois.json file using the sbJSON framework
@@ -79,8 +80,9 @@
     for (NSDictionary *poiNode in poiNodes) {
         
         // we want the content of the node not the node itself
-        NSDictionary *poi = [poiNode objectForKey:@"poi"];
-        NSString *title = [self getSectionTitle:[poi objectForKey:@"name"]];
+        Poi *poi = [[Poi alloc] init:[poiNode objectForKey:@"poi"]];
+        NSString *title = [self getSectionTitle:[poi name]];
+        
         [[[self sections] objectForKey:title] addObject:poi];
     } 
   }

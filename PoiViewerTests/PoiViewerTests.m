@@ -8,6 +8,7 @@
 
 #import "PoiViewerTests.h"
 #import "PoiParser.h"
+#import "Poi.h"
 
 @implementation PoiViewerTests
 
@@ -24,6 +25,7 @@
     
     [super tearDown];
 }
+
 
 - (void)testLoadParser
 {
@@ -55,6 +57,16 @@
     STAssertTrue(( [[[parser sections] objectForKey:@"A"] count] > 0), @"section A not filled");
     STAssertTrue(( [[[parser sections] objectForKey:@"e"] count] == 0), @"lowercase sections not allowed");
     STAssertTrue(( [[[parser sections] objectForKey:@"1"] count] == 0), @"numeric sections not allowed");
+}
+
+
+- (void)testPoiData {
+    PoiParser *parser = [[PoiParser alloc] init];
+    
+    //Todo make this test independant of sequence
+    Poi *poi = [[[parser sections] objectForKey:@"A"] objectAtIndex:1];
+    STAssertEqualObjects([poi shopType], @"Eat/Japanese", @"shoptype should equal Eat/Japanese");
+    STAssertEqualObjects([poi address], @"47 Museum St, WC1", @"address should equal 47 Museum St, WC1");
 }
 
 @end

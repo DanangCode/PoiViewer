@@ -7,12 +7,13 @@
 //
 
 #import "DetailViewController.h"
+#import "Poi.h"
 
 /* Displays a single POI with the poi title type, address and review */
 @implementation DetailViewController
 @synthesize poi;
 
-- (id)init:(NSDictionary *) aPoi{
+- (id)init:(Poi *) aPoi{
     self = [super init];
     if (self) {
         [self setPoi:aPoi];
@@ -21,13 +22,13 @@
 }
 
 - (void)loadView {
-    [self setTitle:[poi objectForKey:@"name"]];
+    [self setTitle:[poi name]];
     [self setView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)]];
 	[[self view ] setBackgroundColor:[UIColor whiteColor]];
     
     UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
     NSMutableString *category = [[NSMutableString alloc] initWithString:@"Category: "];
-    [category  appendString:[poi objectForKey:@"type"]];
+    [category  appendString:[poi shopType]];
     aLabel.text = category;
 	aLabel.textAlignment = UITextAlignmentLeft;
     [[self view] addSubview:aLabel];
@@ -36,19 +37,7 @@
 
     UILabel *addressLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, 280, 60)];
     NSMutableString *address = [[NSMutableString alloc] initWithString:@"Address: "];
-    if ([[poi objectForKey:@"address"] objectForKey:@"street"]) {
-        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"street"]];
-    }
-    
-    if ([[poi objectForKey:@"address"] objectForKey:@"locality"]) {
-        [address appendString:@", "];
-        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"locality"]];
-    }
-    if ([[poi objectForKey:@"address"] objectForKey:@"postcode"]) {
-        [address appendString:@", "];
-        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"postcode"]];
-    }
-    
+    [address appendString:[poi address]];
     addressLbl.text = address;
 	addressLbl.textAlignment = UITextAlignmentLeft;
     [addressLbl setLineBreakMode:UILineBreakModeWordWrap];
@@ -73,7 +62,7 @@
         }
     }
 
-    [webView loadHTMLString:[[poi objectForKey:@"review"] objectForKey:@"summary"] baseURL:nil];
+    [webView loadHTMLString:[poi review] baseURL:nil];
     [[self view] addSubview:webView];
     [webView release];
 
