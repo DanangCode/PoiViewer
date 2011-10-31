@@ -35,6 +35,7 @@
 		585573DA145C9159001C1F6C /* PoiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 585573D9145C9159001C1F6C /* PoiParser.m */; };
 		58557423145E0212001C1F6C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58557422145E0211001C1F6C /* DetailViewController.m */; };
 		5855742A145F0CE3001C1F6C /* Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 58557429145F0CE3001C1F6C /* Poi.m */; };
+		5855742E145F1F3F001C1F6C /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5855742D145F1F3F001C1F6C /* Readme.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		58557422145E0211001C1F6C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = classes/DetailViewController.m; sourceTree = "<group>"; };
 		58557428145F0CE2001C1F6C /* Poi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Poi.h; path = classes/Poi.h; sourceTree = "<group>"; };
 		58557429145F0CE3001C1F6C /* Poi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Poi.m; path = classes/Poi.m; sourceTree = "<group>"; };
+		5855742D145F1F3F001C1F6C /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				58557384145C6493001C1F6C /* InfoPlist.strings */,
 				58557387145C6493001C1F6C /* main.m */,
 				58557389145C6493001C1F6C /* PoiViewer-Prefix.pch */,
+				5855742D145F1F3F001C1F6C /* Readme.txt */,
 			);
 			name = "Supporting Files";
 			path = PoiViewer;
@@ -311,6 +314,7 @@
 			files = (
 				58557386145C6493001C1F6C /* InfoPlist.strings in Resources */,
 				585573D7145C6F8A001C1F6C /* pois.json in Resources */,
+				5855742E145F1F3F001C1F6C /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
