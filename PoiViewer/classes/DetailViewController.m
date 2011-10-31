@@ -32,13 +32,13 @@
    // [self addLabel:[poi objectForKey:@"name"] position:10];
     [self addLabel:[poi objectForKey:@"type"] position:40];
     [self addLabel:[[poi objectForKey:@"address"] objectForKey:@"street"] position:70];
-    
-    //review is html. This is displayed with UIWebview
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 100, 280, 360)];
     [webView loadHTMLString:[[poi objectForKey:@"review"] objectForKey:@"summary"] baseURL:nil];
     [[self view] addSubview:webView];
     [webView release];
-    [super loadView];
+
+    
+    
     
 }
 
