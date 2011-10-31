@@ -13,7 +13,7 @@
 		58557386145C6493001C1F6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 58557384145C6493001C1F6C /* InfoPlist.strings */; };
 		58557388145C6493001C1F6C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58557387145C6493001C1F6C /* main.m */; };
 		5855738C145C6493001C1F6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5855738B145C6493001C1F6C /* AppDelegate.m */; };
-		5855738F145C6493001C1F6C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5855738E145C6493001C1F6C /* ViewController.m */; };
+		5855738F145C6493001C1F6C /* PoiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5855738E145C6493001C1F6C /* PoiViewController.m */; };
 		5855739A145C6493001C1F6C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58557399145C6493001C1F6C /* SenTestingKit.framework */; };
 		5855739B145C6493001C1F6C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5855737B145C6493001C1F6C /* UIKit.framework */; };
 		5855739C145C6493001C1F6C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5855737D145C6493001C1F6C /* Foundation.framework */; };
@@ -57,8 +57,8 @@
 		58557389145C6493001C1F6C /* PoiViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PoiViewer-Prefix.pch"; sourceTree = "<group>"; };
 		5855738A145C6493001C1F6C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5855738B145C6493001C1F6C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5855738D145C6493001C1F6C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5855738E145C6493001C1F6C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5855738D145C6493001C1F6C /* PoiViewController.h */ = {isa = PBXFileReference; path = PoiViewController.h; sourceTree = "<group>"; };
+		5855738E145C6493001C1F6C /* PoiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoiViewController.m; sourceTree = "<group>"; };
 		58557398145C6493001C1F6C /* PoiViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoiViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58557399145C6493001C1F6C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		585573A1145C6494001C1F6C /* PoiViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PoiViewerTests-Info.plist"; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 			children = (
 				5855738A145C6493001C1F6C /* AppDelegate.h */,
 				5855738B145C6493001C1F6C /* AppDelegate.m */,
-				5855738D145C6493001C1F6C /* ViewController.h */,
-				5855738E145C6493001C1F6C /* ViewController.m */,
+				5855738D145C6493001C1F6C /* PoiViewController.h */,
+				5855738E145C6493001C1F6C /* PoiViewController.m */,
 				585573D8145C9159001C1F6C /* PoiParser.h */,
 				585573D9145C9159001C1F6C /* PoiParser.m */,
 				58557421145E0211001C1F6C /* DetailViewController.h */,
@@ -342,7 +342,7 @@
 			files = (
 				58557388145C6493001C1F6C /* main.m in Sources */,
 				5855738C145C6493001C1F6C /* AppDelegate.m in Sources */,
-				5855738F145C6493001C1F6C /* ViewController.m in Sources */,
+				5855738F145C6493001C1F6C /* PoiViewController.m in Sources */,
 				585573CA145C6BD9001C1F6C /* NSObject+SBJson.m in Sources */,
 				585573CB145C6BD9001C1F6C /* SBJsonParser.m in Sources */,
 				585573CC145C6BD9001C1F6C /* SBJsonStreamParser.m in Sources */,

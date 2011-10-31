@@ -7,11 +7,8 @@
 //
 
 #import "DetailViewController.h"
-@interface DetailViewController()
 
-@end
-
-
+/* Displays a single POI with the poi title type, address and review */
 @implementation DetailViewController
 @synthesize poi;
 

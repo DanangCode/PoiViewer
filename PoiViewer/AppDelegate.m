@@ -7,37 +7,27 @@
 //
 
 #import "AppDelegate.h"
-
-#import "ViewController.h"
+#import "PoiViewController.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-//@synthesize viewController = _viewController;
-
-- (void)dealloc
-{
-    [_window release];
-   // [_viewController release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
+{    
     [self setWindow: [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease]];
-    // Override point for customization after application launch.
-    ViewController *viewController = [[[ViewController alloc] init] autorelease];
-    
+    PoiViewController *viewController = [[[PoiViewController alloc] init] autorelease];    
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
-  //  [[navController navigationBar] setTranslucent:YES];
-    //[[navController navigationBar] setBarStyle:UIBarStyleBlack];
     [[self window] setRootViewController:navController];
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-
+- (void)dealloc
+{
+    [_window release];
+    [super dealloc];
+}
 
 
 @end

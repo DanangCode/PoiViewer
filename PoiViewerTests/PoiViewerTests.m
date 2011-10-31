@@ -29,7 +29,7 @@
 {
     PoiParser *parser = [[PoiParser alloc] init];
  
-    NSArray *allPois = [parser pois];
+    NSArray *allPois = [parser loadPOIs];
     STAssertTrue(([allPois count] > 0), @"No Pois Returned");
     
     NSDictionary *poi = [[allPois objectAtIndex:0] objectForKey:@"poi"];

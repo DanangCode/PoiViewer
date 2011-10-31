@@ -7,46 +7,57 @@
 //
 
 #import "PoiParser.h"
-//JSON framework https://github.com/stig/json-framework.git
 #import "SBJson.h"
 
+/*
+ The POI parser loads POIs from the pois.json file using the sbJSON framework
+ (https://github.com/stig/json-framework.git) It divides them up into an NSMutableDictionary
+ called sections by the poi/name in the JSON data. the Key to Sections are the capitalized 
+ first letter of the name.*/
 @interface PoiParser () 
     -(NSString *)getSectionTitle:(NSString *)name;
     -(BOOL)isNumeric:(NSString *)s;
 @end
 
 @implementation PoiParser
-@synthesize pois, sections;
+@synthesize sections;
 
 -(id)init {
     self = [super init];
     if (self) {
-        [self loadPOIs];
         [self createSections];
     }
     return self;
 }
 
-
--(void)loadPOIs {
+/* Loads the pois.json file and parsed it into an array of Nested NSDictionaries, one for each POI. The Dictionary
+ consists of one Key called Poi. That Key contains a Dictioanry with the more relevant keys: name, type, address, review*/
+-(NSArray *)loadPOIs {
     NSError *error;
     NSString *jsonString = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"pois" ofType:@"json"] encoding:NSUTF8StringEncoding error:&error];
     if (!jsonString) {
         NSLog(@"Failed to read pois. Error: %@", error);
         [error release];
     }
+    
     //parse the json objects into an array of poi dictionaries using the SBJson library
-    [self setPois:[jsonString JSONValue]] ;
-    [jsonString release];
+    
+    //NOTE the SBJson parser call to JSONValue is producting a memory leak. The parser does not seem
+    //to be cleaning up properly.
+    NSArray *poiNodes = [[jsonString JSONValue] autorelease];
+    return poiNodes;
     
 }
 
+/* Loops throught the pois and divides them into a dictionary of arrays by section Title. There is
+ one section Title Key for each capital letter A-Z.*/
 -(void) createSections{
-    BOOL found;
     
+    NSArray *poiNodes = [self loadPOIs];
+    BOOL found;
     // Loop through the pois and create our keys
     [self setSections:[[NSMutableDictionary alloc] init]];
-    for (NSDictionary *poiNode in [self pois]) {
+    for (NSDictionary *poiNode in poiNodes) {
         
         // we want the content of the node not the node itself
         NSDictionary *poi = [poiNode objectForKey:@"poi"];
@@ -65,7 +76,7 @@
     }
     
     // Loop again and sort the pois into their respective keys
-    for (NSDictionary *poiNode in [self pois]) {
+    for (NSDictionary *poiNode in poiNodes) {
         
         // we want the content of the node not the node itself
         NSDictionary *poi = [poiNode objectForKey:@"poi"];
@@ -74,6 +85,8 @@
     } 
   }
 
+/*takes a string as imput. returns Capitalized first letter of the string. If the string is 
+ Numeric, the first letter of the number's word is returned. For example, T (Two) for 2*/
 -(NSString *)getSectionTitle:(NSString *)name {
     NSString *title = [[name substringToIndex:1] uppercaseString];
     //if numeric return the first letter of the number
@@ -109,6 +122,7 @@
     }
 }
 
+/* returns true is the String s is numeric*/
 -(BOOL)isNumeric:(NSString *)s
 {
     NSScanner *sc = [NSScanner scannerWithString: s];
@@ -121,7 +135,6 @@
 
 - (void)dealloc {
     [sections release];
-    [pois release];
     [super dealloc];
 }
 
