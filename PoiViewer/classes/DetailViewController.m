@@ -8,7 +8,6 @@
 
 #import "DetailViewController.h"
 @interface DetailViewController()
--(void)addLabel:(NSString *)title position:(int)position;
 
 @end
 
@@ -29,10 +28,54 @@
     [self setView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)]];
 	[[self view ] setBackgroundColor:[UIColor whiteColor]];
     
-   // [self addLabel:[poi objectForKey:@"name"] position:10];
-    [self addLabel:[poi objectForKey:@"type"] position:40];
-    [self addLabel:[[poi objectForKey:@"address"] objectForKey:@"street"] position:70];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 100, 280, 360)];
+    UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 30)];
+    NSMutableString *category = [[NSMutableString alloc] initWithString:@"Category: "];
+    [category  appendString:[poi objectForKey:@"type"]];
+    aLabel.text = category;
+	aLabel.textAlignment = UITextAlignmentLeft;
+    [[self view] addSubview:aLabel];
+    [aLabel release];
+    [category release];
+
+    UILabel *addressLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, 280, 60)];
+    NSMutableString *address = [[NSMutableString alloc] initWithString:@"Address: "];
+    if ([[poi objectForKey:@"address"] objectForKey:@"street"]) {
+        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"street"]];
+    }
+    
+    if ([[poi objectForKey:@"address"] objectForKey:@"locality"]) {
+        [address appendString:@", "];
+        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"locality"]];
+    }
+    if ([[poi objectForKey:@"address"] objectForKey:@"postcode"]) {
+        [address appendString:@", "];
+        [address appendString:[[poi objectForKey:@"address"] objectForKey:@"postcode"]];
+    }
+    
+    addressLbl.text = address;
+	addressLbl.textAlignment = UITextAlignmentLeft;
+    [addressLbl setLineBreakMode:UILineBreakModeWordWrap];
+    [addressLbl setNumberOfLines:0];
+    [[self view] addSubview:addressLbl];
+    [addressLbl release];
+    [address release];
+
+
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 100, 300, 280)];
+    //the default webview shows a gray background when it is scrolled. this code turns it white
+    webView.backgroundColor = [UIColor whiteColor];
+    for (UIView* subView in [webView subviews])
+    {
+        if ([subView isKindOfClass:[UIScrollView class]]) {
+            for (UIView* shadowView in [subView subviews])
+            {
+                if ([shadowView isKindOfClass:[UIImageView class]]) {
+                    [shadowView setHidden:YES];
+                }
+            }
+        }
+    }
+
     [webView loadHTMLString:[[poi objectForKey:@"review"] objectForKey:@"summary"] baseURL:nil];
     [[self view] addSubview:webView];
     [webView release];
@@ -42,12 +85,5 @@
     
 }
 
--(void)addLabel:(NSString *)title position:(int)position{
-    UILabel *aLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, position, 280, 30)];
-    aLabel.text = title;
-	aLabel.textAlignment = UITextAlignmentLeft;
-    [[self view] addSubview:aLabel];
-    [aLabel release];
-}
 
 @end
