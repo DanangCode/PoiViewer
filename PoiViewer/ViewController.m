@@ -67,7 +67,7 @@
 {
     [self setTitle:@"Poi Viewer"];
     [self setParser:[[PoiParser alloc] init]];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,460) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,320,480) style:UITableViewStylePlain];
     [tableView setDelegate:self];
     [tableView setDataSource:self];
     [self setView:tableView];
